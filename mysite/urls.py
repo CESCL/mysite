@@ -19,7 +19,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
-    path('home/', include('myapp.urls')),
+    path('home/', include('myapp.urls'), name="home"),
     path('register/', user_views.register, name="register"),
     path('admin/', admin.site.urls),
 ]
