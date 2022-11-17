@@ -6,4 +6,4 @@ from django.template import loader
 from .models import Applicant, Booking
 
 def home(request):
-    return HttpResponse("You're at the Home Page")
+    return render(request, "myapp/home.html")
