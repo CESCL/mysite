@@ -1,15 +1,18 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-    {% for post in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="content-section">
+        <h3>Welcome to the DLMS</h3>
+        <p class='text-muted'>Please register or login to the system.
+          <ul class="list-group">
+            <a class="nav-item nav-link" href="{% url 'home' %}">Login</a>
+            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
 {% endblock content %}
