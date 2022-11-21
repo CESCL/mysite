@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'tempus_dominus',
     'users.apps.UsersConfig',
     'myapp.apps.MyAppConfig',
-    'polls.apps.PollsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

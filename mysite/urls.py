@@ -19,8 +19,7 @@ from django.urls import include, path
 from users import views as user_views
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
-    path('home/', include('myapp.urls'), name="home"),
+    path('home/', user_views.home, name="home"),
     path('register/', user_views.register, name="register"),
     path('login/', auth_views.LoginView.as_view(template_name="users/login.html"), name="login"),
     path('profile/', user_views.profile, name="profile"),
