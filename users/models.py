@@ -14,7 +14,7 @@ class Profile(models.Model):
     booked_user = models.BooleanField("User already booked a trial", default=False)
     booked_site = models.CharField("Booking Sites Available", max_length=32, default="")
     booked_date = models.DateField("Booking Dates Available", default=timezone.now)
-    booked_time = models.TimeField("Booking Time Available", default=timezone.now)
+    booked_time = models.TimeField("Booking Time Available", default=timezone.now,)
     trial_status = models.CharField("Trial Status", max_length=32, choices=TRIAL_STATUS, default="Not_Taken")
     
     def __str__(self):

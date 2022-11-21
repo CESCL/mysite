@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, BookingForm, ProfileUpdateForm
 
 def register(request):
     if request.method == "POST":
@@ -42,15 +42,15 @@ def profile(request):
 @login_required
 def booking(request):
     if request.method == "POST":
-        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
-        if p_form.is_valid():
-            p_form.save()
+        b_form = BookingForm(request.POST, instance=request.user.profile)
+        if b_form.is_valid():
+            b_form.save()
             messages.success(request, f"Your booking has been set")
             return redirect("profile")
     else:
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        b_form = BookingForm(instance=request.user.profile)
     context = {
-        'p_form': p_form
+        'b_form': b_form
     }
-    form = ProfileUpdateForm()
-    return render(request, "users/booking.html", {"form": form})
+    form = BookingForm()
+    return render(request, "users/booking.html", context)

@@ -21,10 +21,18 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = []
+
+class BookingForm(forms.ModelForm):
     SITES = (
         ("Sydney", ("Sydney")),
         ("Brisbaine", ("Brisbaine")),
         ("Adelaide", ("Adelaide")),
+    )
+    booked_user = forms.BooleanField(
+        label='Have you confirmed the information?',
     )
     booked_site = forms.CharField(
         label='Select your trial site:',
@@ -34,16 +42,6 @@ class ProfileUpdateForm(forms.ModelForm):
         label="Select your trial date:", 
         widget=DatePicker()
         )
-    booked_time = forms.DateField(
-        label="Select your trial time:", 
-        widget=TimePicker(
-            options={
-                'format': 'HH:00',
-                'disabledHours': [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24],
-                'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
-            }
-        )
-    )
     class Meta:
         model = Profile
-        fields = ['booked_site', 'booked_date', 'booked_time']
+        fields = ['booked_site', 'booked_date', 'booked_user']
