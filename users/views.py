@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, BookingForm, ProfileUpdateForm
+from .models import Booking, User
 
 def home(request):
     return render(request, "users/home.html")
@@ -57,3 +58,11 @@ def booking(request):
     }
     form = BookingForm()
     return render(request, "users/booking.html", context)
+
+@login_required
+def status(request):
+    user_id = request.user.id
+    context = {
+        'booking': Booking.objects.get(id=user_id)
+    }
+    return render(request, "users/status.html", context)
