@@ -1,0 +1,31 @@
+{% extends "myapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main role="main" class="container">
+    <div class="content-section">
+        {{ form.media }}  {# Adds widget's JS/CSS files from CDN #}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Booking a Trial</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Please, check the data before you book the trial: <a class="ml-2" </a>
+                </small>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Book</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script>
+    $(function () {
+      $("#id_booked_date").datepicker();
+    });
+</script>
+
+{% endblock content %}
