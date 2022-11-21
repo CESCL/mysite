@@ -16,11 +16,11 @@ def register(request):
     return render(request, "users/register.html", {"form": form})
 
 @login_required
-def profile(request):
+def updateprofile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
-        if u_form.is_valid() and u_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, f"Your account has been updated")
@@ -33,9 +33,24 @@ def profile(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, "users/profile.html", context)
+    return render(request, "users/updateprofile.html", context)
+
+@login_required
+def profile(request):
+    return render(request, "users/profile.html")
 
 @login_required
 def booking(request):
+    if request.method == "POST":
+        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, f"Your booking has been set")
+            return redirect("profile")
+    else:
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    context = {
+        'p_form': p_form
+    }
     form = ProfileUpdateForm()
     return render(request, "users/booking.html", {"form": form})
