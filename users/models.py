@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-class Profile(models.Model):
+class Booking(models.Model):
     TRIAL_STATUS = (
         ("Not_Taken", ("Not_Taken")),
         ("Approved", ("Approved")),

@@ -45,13 +45,13 @@ def profile(request):
 @login_required
 def booking(request):
     if request.method == "POST":
-        b_form = BookingForm(request.POST, instance=request.user.profile)
+        b_form = BookingForm(request.POST, instance=request.user.booking)
         if b_form.is_valid():
             b_form.save()
             messages.success(request, f"Your booking has been set")
             return redirect("profile")
     else:
-        b_form = BookingForm(instance=request.user.profile)
+        b_form = BookingForm(instance=request.user.booking)
     context = {
         'b_form': b_form
     }

@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Booking
 from tempus_dominus.widgets import DatePicker, TimePicker
 
 class UserRegisterForm(UserCreationForm):
+    username = forms.CharField(label='National ID: This will be your login Username')
     email = forms.EmailField()
     last_name = forms.CharField()
     first_name = forms.CharField()
@@ -43,5 +44,5 @@ class BookingForm(forms.ModelForm):
         widget=DatePicker()
         )
     class Meta:
-        model = Profile
+        model = Booking
         fields = ['booked_site', 'booked_date', 'booked_user']
