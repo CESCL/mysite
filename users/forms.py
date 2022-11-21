@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
-from bootstrap_datepicker_plus.widgets import DatePickerInput
+from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -22,7 +22,10 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     booked_site = forms.CharField(label='Select your trial site:')
-    booked_date = forms.DateTimeField(label="Select your trial date:")
+    booked_date = forms.DateField(
+        label="Select your trial date:", 
+        widget=DatePicker()
+        )
     class Meta:
         model = Profile
         fields = ['booked_site', 'booked_date']

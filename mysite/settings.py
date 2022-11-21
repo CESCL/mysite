@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap_datepicker_plus',
+    'tempus_dominus',
     'users.apps.UsersConfig',
     'myapp.apps.MyAppConfig',
     'polls.apps.PollsConfig',
