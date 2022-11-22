@@ -4,6 +4,11 @@
 
 <main role="main" class="container">
     <div class="content-section">
+        <h2>Hello {{ user.first_name }} {{ user.last_name }}, </h2>
+        <p>{{ user.email }}</p>
+        <h5>Welcome to the DLMS</h5>
+    </div>
+    <div class="content-section">
         {{ form.media }}  {# Adds widget's JS/CSS files from CDN #}
         {% if booking.booked_user %}
         <h4 class='text-muted'>You already booked a trial for: </h4>
@@ -18,7 +23,7 @@
           <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Booking a Trial</legend>
+                <legend class="border-bottom mb-4">Book a Trial</legend>
                 {{ b_form|crispy }}
             </fieldset>
             <div class="border-top pt-3">
