@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Booking
-from tempus_dominus.widgets import DatePicker, TimePicker
+from tempus_dominus.widgets import DatePicker#, TimePicker
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label='National ID: This will be your login Username')
@@ -13,18 +13,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
-
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-    
-    class Meta:
-        model = User
-        fields = ['username', 'email']
-
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = []
 
 class BookingForm(forms.ModelForm):
     SITES = (
@@ -47,3 +35,15 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['booked_site', 'booked_date', 'booked_user']
+
+#class UserUpdateForm(forms.ModelForm):
+#    email = forms.EmailField()
+#    
+#    class Meta:
+#        model = User
+#        fields = ['username', 'email']
+#
+#class ProfileUpdateForm(forms.ModelForm):
+#    class Meta:
+#        model = User
+#        fields = []

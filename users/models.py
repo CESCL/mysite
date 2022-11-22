@@ -11,11 +11,11 @@ class Booking(models.Model):
         ("Rejected", ("Rejected")),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    booked_user = models.BooleanField("User already booked a trial", default=False)
-    booked_site = models.CharField("Booking Sites Available", max_length=32, default="")
-    booked_date = models.DateField("Booking Dates Available", default=timezone.now)
-    booked_time = models.TimeField("Booking Time Available", default=timezone.now,)
+    booked_user = models.BooleanField("Booked trial", default=False)
+    booked_site = models.CharField("Booking Site", max_length=32, default="")
+    booked_date = models.DateField("Booking Date", default=timezone.now)
+    booked_time = models.TimeField("Booking Time", default=timezone.now,)
     trial_status = models.CharField("Trial Status", max_length=32, choices=TRIAL_STATUS, default="Not Taken")
     
     def __str__(self):
-        return f'{self.user.username}'
+        return f"{self.user.username}, {self.user.first_name}, {self.user.last_name}"
