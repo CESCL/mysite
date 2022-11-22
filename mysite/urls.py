@@ -20,6 +20,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('home/', user_views.home, name="home"),
+    path('about/', user_views.about, name="about"),
     path('register/', user_views.register, name="register"),
     path('login/', auth_views.LoginView.as_view(template_name="users/login.html"), name="login"),
     path('profile/', user_views.profile, name="profile"),

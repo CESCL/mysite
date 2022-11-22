@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, BookingForm, ProfileUpdateForm
-from .models import Booking, User
+from .models import Booking
 
 def home(request):
     return render(request, "users/home.html")
+
+def about(request):
+    return render(request, "users/about.html")
 
 def register(request):
     if request.method == "POST":
@@ -18,6 +21,37 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, "users/register.html", {"form": form})
+
+@login_required
+def profile(request):
+    return render(request, "users/profile.html")
+
+@login_required
+def booking(request):
+    user_id = request.user.id
+    if request.method == "POST":
+        b_form = BookingForm(request.POST, instance=request.user.booking)
+        if b_form.is_valid():
+            b_form.save()
+            messages.success(request, f"Your booking has been set")
+            return redirect("profile")
+    else:
+        b_form = BookingForm(instance=request.user.booking)
+    context = {
+        'b_form': b_form,
+        'booking': Booking.objects.get(id=user_id)
+    }
+    form = BookingForm()
+    return render(request, "users/booking.html", context)
+
+@login_required
+def status(request):
+    user_id = request.user.id
+    context = {
+        'booking': Booking.objects.get(id=user_id)
+    }
+    return render(request, "users/status.html", context)
+
 
 @login_required
 def updateprofile(request):
@@ -38,31 +72,3 @@ def updateprofile(request):
         'p_form': p_form
     }
     return render(request, "users/updateprofile.html", context)
-
-@login_required
-def profile(request):
-    return render(request, "users/profile.html")
-
-@login_required
-def booking(request):
-    if request.method == "POST":
-        b_form = BookingForm(request.POST, instance=request.user.booking)
-        if b_form.is_valid():
-            b_form.save()
-            messages.success(request, f"Your booking has been set")
-            return redirect("profile")
-    else:
-        b_form = BookingForm(instance=request.user.booking)
-    context = {
-        'b_form': b_form
-    }
-    form = BookingForm()
-    return render(request, "users/booking.html", context)
-
-@login_required
-def status(request):
-    user_id = request.user.id
-    context = {
-        'booking': Booking.objects.get(id=user_id)
-    }
-    return render(request, "users/status.html", context)

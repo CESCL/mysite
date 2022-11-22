@@ -1,0 +1,22 @@
+{% extends "users/base.html" %}
+{% block content %}
+<main role="main" class="container">
+    <div class="content-section">
+        <h3>SEP401 - Software Engineering Principles</h3>
+        <h4>Software Application Development and Presentation</h4>
+        <h5>Lecturer: Mr. Muhammad Atif Qureshi</h5>
+        <h6>Group: Carlos Armando Escalona Montes de Oca, 
+            Sudarshan Udash, Srijana Aryal & Dewmi Nihara</h6>
+        <h6>November 2022</h6>
+    </div>
+    <div class="content-section">
+        <p>This code has been developed using Django framework and Python programming language.
+        </p>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+             <a class="ml-2" href="{% url "home" %}">Back Home</a>
+            </small>
+        </div>
+    </div>
+</main>
+{% endblock content %}

@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class Booking(models.Model):
     TRIAL_STATUS = (
-        ("Not_Taken", ("Not_Taken")),
+        ("Not Taken", ("Not Taken")),
         ("Approved", ("Approved")),
         ("Rejected", ("Rejected")),
     )
@@ -15,7 +15,7 @@ class Booking(models.Model):
     booked_site = models.CharField("Booking Sites Available", max_length=32, default="")
     booked_date = models.DateField("Booking Dates Available", default=timezone.now)
     booked_time = models.TimeField("Booking Time Available", default=timezone.now,)
-    trial_status = models.CharField("Trial Status", max_length=32, choices=TRIAL_STATUS, default="Not_Taken")
+    trial_status = models.CharField("Trial Status", max_length=32, choices=TRIAL_STATUS, default="Not Taken")
     
     def __str__(self):
         return f'{self.user.username}'

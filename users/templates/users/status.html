@@ -9,14 +9,16 @@
         </div>
       <div class="content-section">
         {% if booking.booked_user %}
-        <h4 class='text-muted'>You have a trial booked: </h4>
+        <h4 class='text-muted'>You have booked a trial for: </h4>
         <h5 class='text-muted'>Site: </h5>
             <p class='text-muted'>{{ booking.booked_site }}</p>
           <h5 class='text-muted'>Date: </h5>
             <p class='text-muted'>{{ booking.booked_date }}</p>
+            <h5 class='text-muted'>Trial Status: </h5>
+            <p class='text-muted'>{{ booking.trial_status }}</p>
           {% else %}
-          <h4 class='text-muted'>You don't have a trial booked yet. Please book your trial </h4>
-          <a class="nav-item nav-link" href="{% url 'booking' %}">Booking a Trial</a>
+          <h4 class='text-muted'>You don't have a trial booked yet. </h4>
+          <a class="nav-item nav-link" href="{% url 'booking' %}">Book a Trial</a>
           {% endif %}
           <ul class="list-group">
             <a class="nav-item nav-link" href="{% url 'profile' %}">Back Home</a>

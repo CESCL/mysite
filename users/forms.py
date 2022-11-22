@@ -28,6 +28,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class BookingForm(forms.ModelForm):
     SITES = (
+        ("", ("")),
         ("Sydney", ("Sydney")),
         ("Brisbaine", ("Brisbaine")),
         ("Adelaide", ("Adelaide")),
