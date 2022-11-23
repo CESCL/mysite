@@ -6,7 +6,6 @@
     <div class="content-section">
         <h2>Hello {{ user.first_name }} {{ user.last_name }}, </h2>
         <p>{{ user.email }}</p>
-        <h5>Welcome to the DLMS</h5>
     </div>
     <div class="content-section">
         {{ form.media }}  {# Adds widget's JS/CSS files from CDN #}
@@ -18,7 +17,7 @@
             <p class='text-muted'>{{ booking.booked_date }}</p>
             <h5 class='text-muted'>Trial Status: </h5>
             <p class='text-muted'>{{ booking.trial_status }}</p>
-            <h6 class='text-muted'>Important: Trial status can take up to 5 business days to update. If you want to change your booked trial, please communicate with the staff.</h5>
+            <h6 class='text-muted'>Important: Trial status can take up to 5 business days to update.</h5>
           {% else %}
           <form method="POST">
             {% csrf_token %}
@@ -36,7 +35,12 @@
             </div>
         </form>
           {% endif %}
-
+        <div>
+          <ul class="list-group">
+            <a class="nav-item nav-link" href="{% url 'profile' %}">Back Home</a>
+            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+          </ul>
+        </div>
     </div>
 </main>
 
