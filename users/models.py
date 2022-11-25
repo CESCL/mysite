@@ -19,3 +19,16 @@ class Booking(models.Model):
     
     def __str__(self):
         return f"{self.user.username}, {self.user.first_name}, {self.user.last_name}"
+
+class License(models.Model):
+    LICENSE_STATUS = (
+        ("Pending Trial", ("Pending Trial")),
+        ("In process of printing", ("In process of printing Card")),
+        ("In delivery process", ("In delivery process")),
+        ("Delivered", ("Delivered")),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    license_status = models.CharField("License Status", max_length=32, choices=LICENSE_STATUS, default="Pending Trial")
+    
+    def __str__(self):
+        return f"{self.user.username}, {self.user.first_name}, {self.user.last_name}"

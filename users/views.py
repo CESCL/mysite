@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, BookingForm #, UserUpdateForm, ProfileUpdateForm
-from .models import Booking, User
+from .models import Booking, User, License
 
 def home(request):
     return render(request, "users/home.html")
@@ -48,7 +48,8 @@ def booking(request):
 def status(request):
     user_id = request.user.id
     context = {
-        'booking': Booking.objects.get(id=user_id)
+        'booking': Booking.objects.get(id=user_id),
+        'license': License.objects.get(id=user_id)
     }
     return render(request, "users/status.html", context)
 
