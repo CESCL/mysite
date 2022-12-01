@@ -29,21 +29,9 @@ class BookingForm(forms.ModelForm):
         widget=forms.Select(choices=SITES)
     )
     booked_date = forms.DateField(
-        label="Select your trial date:", 
+        label="Set your trial date (XXXX-YY-ZZ):", 
         widget=DatePicker()
         )
     class Meta:
         model = Booking
         fields = ['booked_site', 'booked_date', 'booked_user']
-
-#class UserUpdateForm(forms.ModelForm):
-#    email = forms.EmailField()
-#    
-#    class Meta:
-#        model = User
-#        fields = ['username', 'email']
-#
-#class ProfileUpdateForm(forms.ModelForm):
-#    class Meta:
-#        model = User
-#        fields = []
